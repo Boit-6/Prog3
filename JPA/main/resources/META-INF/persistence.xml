@@ -1,0 +1,43 @@
+<!-- Archivo persistence.xml -->
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+    <!-- Definición de la unidad de persistencia -->
+    <!-- name: es el nombre lógico usado en el código para obtener el EntityManager -->
+    <!-- transaction-type: RESOURCE_LOCAL indica que manejamos transacciones manualmente -->
+    <persistence-unit name="miUnidad" transaction-type="RESOURCE_LOCAL">
+
+        <!-- Proveedor de JPA que se usará (Hibernate en este caso) -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+
+        <!-- Configuración de propiedades para conexión a la BD y comportamiento de Hibernate -->
+        <properties>
+
+            <!-- Driver JDBC de la base de datos -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+            <!-- URL de conexión a PostgreSQL -->
+            <!-- Formato: jdbc:postgresql://host:puerto/nombreBD -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ejemplojpa"/>
+
+            <!-- Usuario y contraseña de la BD -->
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- Estrategia de generación del esquema -->
+            <!-- update: actualiza tablas según las entidades sin borrar datos -->
+            <!-- otros valores: create, create-drop, validate, none -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+
+
+            <!-- Formatear las consultas SQL para que sean más legibles -->
+            <property name="hibernate.format_sql" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
